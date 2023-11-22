@@ -56,15 +56,15 @@ int main(void)
 
             ClearBackground(RAYWHITE);
 
+            //draw background
+            background.DrawBackgrnd(screenWidth, screenHeight);
+
             float frameSpeed = GetFrameTime() * speed;
             obstacleManager.setSpeed(frameSpeed);
             DrawFPS(500, 500);
             obstacleManager.generateObstacle(currentBasePosition);
             obstacleManager.drawObstacles();
             currentBasePosition += frameSpeed;
-
-            //draw background
-            background.DrawBackgrnd(screenWidth, screenHeight);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
@@ -73,9 +73,6 @@ int main(void)
     // De-Initialization
     //--------------------------------------------------------------------------------------
     background.BackgrndDein();
-    UnloadImage(characterImage);
-    UnloadImage(characterImage);
-    UnloadImage(characterImage);
     UnloadImage(baseImage);
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
