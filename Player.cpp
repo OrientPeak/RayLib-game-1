@@ -1,14 +1,16 @@
 #include "Player.h"
+#include "Timer.h"
 
-void Player::UpdatePlayer()
+void Player::UpdatePlayer(int screenHeight)
 {
     //if space pressed stop downward momentum and swap to up
-    if(IsKeyPressed(KEY_SPACE))
+    if(IsKeyPressed(KEY_SPACE) && birdVelocity >= gravity / 3.0f)
     {
         birdAcceleration = 0.0f;
-        birdVelocity = -gravity / 0.5f;
+        birdVelocity = -(gravity * 5) * (3.2f * multiplier);
+        PlaySound(wingFlap);
     }
-    //ekse continue with downward speed
+    //else continue with downward speed
     else
     {
         birdAcceleration += gravity * 0.1f;
@@ -21,12 +23,21 @@ void Player::UpdatePlayer()
     //set bird acceleration and position
     birdVelocity += birdAcceleration * 0.1f;
     birdPosition += birdVelocity * 0.1f;
+
+    if(birdPosition >= 720)
+    {
+        birdPosition = screenHeight;
+    }
+    else if (birdPosition <= 20)
+    {
+        birdPosition = 20;
+    }
 }
 
 void Player::DrawPlayer(int screenWidth)
 {
     //calculate bird x position
-    int birdX = (int)(screenWidth / 3.0f);
+    birdX = (int)(screenWidth / 3.0f);
     //depending on velocity draw bird with wings up or down
     if(birdVelocity >= 0)
     {
@@ -42,4 +53,9 @@ void Player::PlayerDein()
 {
     UnloadTexture(playerDown);
     UnloadTexture(playerUp);
+}
+
+void Player::setMulti(float multi)
+{
+    multi = multiplier;
 }

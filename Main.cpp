@@ -1,18 +1,18 @@
-/*___________________________________________/
-/ background animation                       /
-/ taken from                                 /
-/ https://www.raylib.com/examples.html       /
-/ Obstacle Manager                           /
-/ taken from                                 /
-/ https://github.com/euiko/raylib-flappybird /
-/___________________________________________*/
+/*___________________________________________________________________________________________________________________/
+/ background animation                                                                                               /
+/ taken from                                                                                                         /
+/ https://www.raylib.com/examples.html                                                                               /
+/ Player                                                                                                             /
+/ taken from                                                                                                         /
+/ https://youtu.be/b6A4XHkTjs8                                                                                       / 
+/___________________________________________________________________________________________________________________*/
 
 
 
 #include "raylib.h"
 #include "Background.h"
-#include "ObstacleManager.h"
 #include "Player.h"
+#include "Timer.h"
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -28,30 +28,26 @@ int main(void)
 
     Background background;
     Player player;
+    Timer timer;
 
-    Image obstacleImage = LoadImage("resources/pipe-green.png");
-
-    Image baseImage = LoadImage("resources/base.png");
-    //Texture2D baseTexture = LoadTextureFromImage(baseImage);
+    InitAudioDevice();
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-
-   float speed = 300;
-
-
-    float currentBasePosition = 0;
-   // Vector2 characterPosition = Vector2{60, (float)screenHeight/2};
-     ObstacleManager obstacleManager(obstacleImage, speed, (Vector2){(float)screenWidth,(float)(screenHeight/*-baseTexture.height*/)}, 500);
+     
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        //updating the background by calling the update functions from the background .cpp/.h
+        //updating the background
         background.UpdateBackgrnd();
-        player.UpdatePlayer();
+        //update the player 
+        player.UpdatePlayer(screenHeight);
         
+        float score = GetTime();
 
+        timer.Time();
+        
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
@@ -60,15 +56,11 @@ int main(void)
 
             //draw background
             background.DrawBackgrnd(screenWidth, screenHeight);
+            //draw player
             player.DrawPlayer(screenWidth);
 
-            float frameSpeed = GetFrameTime() * speed;
-            obstacleManager.setSpeed(frameSpeed);
-            obstacleManager.generateObstacle(currentBasePosition);
-            obstacleManager.drawObstacles();
-            currentBasePosition += frameSpeed;
+            timer.Print(score);
 
-            //DrawTextureEx(baseTexture, (Vector2){(float)screenWidth, (float)200.0f}, 0.0f, 1.0f, WHITE);
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
@@ -77,7 +69,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
     background.BackgrndDein();
     player.PlayerDein();
-    UnloadImage(baseImage);
+    CloseAudioDevice();
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
