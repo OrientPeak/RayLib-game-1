@@ -27,11 +27,12 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "Floopy Dood");
 
     Background background;
+    Player player;
 
     Image obstacleImage = LoadImage("resources/pipe-green.png");
 
     Image baseImage = LoadImage("resources/base.png");
-    Texture2D baseTexture = LoadTextureFromImage(baseImage);
+    //Texture2D baseTexture = LoadTextureFromImage(baseImage);
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
@@ -40,7 +41,7 @@ int main(void)
 
     float currentBasePosition = 0;
    // Vector2 characterPosition = Vector2{60, (float)screenHeight/2};
-     ObstacleManager obstacleManager(obstacleImage, speed, (Vector2){(float)screenWidth,(float)(screenHeight-baseTexture.height)}, 500);
+     ObstacleManager obstacleManager(obstacleImage, speed, (Vector2){(float)screenWidth,(float)(screenHeight/*-baseTexture.height*/)}, 500);
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -48,6 +49,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         //updating the background by calling the update functions from the background .cpp/.h
         background.UpdateBackgrnd();
+        player.UpdatePlayer();
         
 
         // Draw
@@ -58,14 +60,15 @@ int main(void)
 
             //draw background
             background.DrawBackgrnd(screenWidth, screenHeight);
+            player.DrawPlayer(screenWidth);
 
             float frameSpeed = GetFrameTime() * speed;
             obstacleManager.setSpeed(frameSpeed);
-            DrawFPS(500, 500);
             obstacleManager.generateObstacle(currentBasePosition);
             obstacleManager.drawObstacles();
             currentBasePosition += frameSpeed;
 
+            //DrawTextureEx(baseTexture, (Vector2){(float)screenWidth, (float)200.0f}, 0.0f, 1.0f, WHITE);
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
@@ -73,6 +76,7 @@ int main(void)
     // De-Initialization
     //--------------------------------------------------------------------------------------
     background.BackgrndDein();
+    player.PlayerDein();
     UnloadImage(baseImage);
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
