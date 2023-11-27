@@ -3,12 +3,14 @@
 #include "raylib.h"
 #include "Player.h"
 
-Player player;
 
 class Timer
 {
 public:
 
+    Player player;
+
+    int multiTime;
     float time = 1.5f;
     int frames;
 

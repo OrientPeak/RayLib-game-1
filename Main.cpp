@@ -41,12 +41,13 @@ int main(void)
         //----------------------------------------------------------------------------------
         //updating the background
         background.UpdateBackgrnd();
-        //update the player 
-        player.UpdatePlayer(screenHeight);
-        
+
         float score = GetTime();
 
         timer.Time();
+
+        //update the player 
+        player.UpdatePlayer(screenHeight);
         
         // Draw
         //----------------------------------------------------------------------------------

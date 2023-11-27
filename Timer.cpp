@@ -4,6 +4,7 @@ void Timer::Print(float score)
 {
     DrawText(TextFormat("Score: %d", (int)score), 10, 10, 24, RED);
     DrawText(TextFormat("Timer: %.1f", (float)time), 10, 40, 24, RED);
+    DrawText(TextFormat("%d", multiTime), 100, 200, 40, GREEN);
 }
 
 void Timer::Time()
@@ -19,7 +20,9 @@ void Timer::Time()
         time = 1.5f;
     }
 
-    switch((int)(time * 10))
+    multiTime = (int)(time * 10);
+
+    switch(multiTime)
     {
         case 0:
             player.setMulti(1.0f);

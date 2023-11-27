@@ -3,11 +3,13 @@
 
 void Player::UpdatePlayer(int screenHeight)
 {
-    //if space pressed stop downward momentum and swap to up
+    //if space pressed stop downward momentum and go up based on the multiplier
     if(IsKeyPressed(KEY_SPACE) && birdVelocity >= gravity / 3.0f)
     {
+        float jump = 5.0f * multiplier;
+
         birdAcceleration = 0.0f;
-        birdVelocity = -(gravity * 5) * (3.2f * multiplier);
+        birdVelocity = -(gravity * 5) * jump;
         PlaySound(wingFlap);
     }
     //else continue with downward speed
