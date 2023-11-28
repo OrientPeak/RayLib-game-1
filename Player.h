@@ -1,6 +1,10 @@
 #pragma once
 
 #include "raylib.h"
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 class Player
 {
@@ -19,7 +23,7 @@ class Player
         float birdVelocity = 0.0f;
         float birdPosition = 0.0f;
 
-        float multiplier;
+        float multiplier = 0;
 
         float miss;
 

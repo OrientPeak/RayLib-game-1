@@ -26,11 +26,11 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "Floopy Dood");
 
+    InitAudioDevice();
+
     Background background;
     Player player;
     Timer timer;
-
-    InitAudioDevice();
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
      

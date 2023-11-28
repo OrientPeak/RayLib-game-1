@@ -12,7 +12,7 @@ public:
 
     int multiTime;
     float time = 1.5f;
-    int frames;
+    int frames = 0;
 
     void Time();
     void Print(float score);
