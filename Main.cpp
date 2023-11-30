@@ -1,13 +1,11 @@
-/*___________________________________________________________________________________________________________________/
-/ background animation                                                                                               /
-/ taken from                                                                                                         /
-/ https://www.raylib.com/examples.html                                                                               /
-/ Player                                                                                                             /
-/ taken from                                                                                                         /
-/ https://youtu.be/b6A4XHkTjs8                                                                                       / 
-/___________________________________________________________________________________________________________________*/
-
-
+/*_______________________________________/
+/ background animation                   /
+/ taken from                             /
+/ https://www.raylib.com/examples.html   /
+/ Player                                 /
+/ taken from                             /
+/ https://youtu.be/b6A4XHkTjs8           / 
+/_______________________________________*/
 
 #include "raylib.h"
 #include "Background.h"
@@ -31,6 +29,8 @@ int main(void)
     Background background;
     Player player;
     Timer timer;
+
+    timer.player = &player;
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
      

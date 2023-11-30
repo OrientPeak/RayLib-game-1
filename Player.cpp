@@ -6,14 +6,11 @@ void Player::UpdatePlayer(int screenHeight)
     //if space pressed stop downward momentum and go up based on the multiplier
     if(IsKeyPressed(KEY_SPACE) && birdVelocity >= gravity / 3.0f)
     {
-        cout <<"Multiplier for calculation: " << multiplier << endl;
         float jump = 5.0f * multiplier;
-        cout <<"Jump: " << jump << endl;
 
         birdAcceleration = 0.0f;
         birdVelocity = -(gravity * 5) * jump;
         PlaySound(wingFlap);
-        cout <<"Velocity: " << birdVelocity << endl;
     }
     //else continue with downward speed
     else
@@ -31,6 +28,7 @@ void Player::UpdatePlayer(int screenHeight)
 
     if(birdPosition >= 720)
     {
+        
         birdPosition = screenHeight;
     }
     else if (birdPosition <= 20)
@@ -63,5 +61,4 @@ void Player::PlayerDein()
 void Player::setMulti(float multi)
 {
     multiplier = multi;
-    cout <<"Multiplier in setter: " << multiplier << endl;
 }

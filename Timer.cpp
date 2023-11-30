@@ -22,22 +22,22 @@ void Timer::Time()
         switch(multiTime)
         {
             case 0:
-                player.setMulti(1.0f);
+                player->setMulti(1.0f);
                 break;
             case 1:
             case -1:
-                player.setMulti(0.9f);
+                player->setMulti(0.9f);
                 break;
             case 2 ... 4:
             case -4 ... -2:
-                player.setMulti(0.5f);
+                player->setMulti(0.5f);
                 break;
             case 5 ... 8:
             case -8 ... -5:
-                player.setMulti(0.2f);
+                player->setMulti(0.2f);
                 break; 
             default:
-                player.setMulti(0.0f);
+                player->setMulti(0.0f);
                 break;
         }    
         time = 1.5f;

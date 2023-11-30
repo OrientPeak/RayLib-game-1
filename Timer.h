@@ -8,7 +8,7 @@ class Timer
 {
 public:
 
-    Player player;
+    Player* player;
 
     int multiTime;
     float time = 1.5f;
