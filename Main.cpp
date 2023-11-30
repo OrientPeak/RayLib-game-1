@@ -48,6 +48,7 @@ int main(void)
 
         //update the player 
         player.UpdatePlayer(screenHeight);
+
         
         // Draw
         //----------------------------------------------------------------------------------
@@ -55,12 +56,22 @@ int main(void)
 
             ClearBackground(RAYWHITE);
 
-            //draw background
-            background.DrawBackgrnd(screenWidth, screenHeight);
-            //draw player
-            player.DrawPlayer(screenWidth);
+            if(player.alive == true)
+            {
+                //draw background
+                background.DrawBackgrnd(screenWidth, screenHeight);
+                //draw player
+                player.DrawPlayer(screenWidth);
 
-            timer.Print(score);
+                timer.Print(score);
+
+            }
+            else
+            {
+                DrawText(TextFormat("GAME OVER \nPress SPACE to EXIT"), screenWidth/3, screenHeight/2, 60, RED);
+                SetExitKey(KEY_SPACE);
+                
+            }
 
         EndDrawing();
         //----------------------------------------------------------------------------------

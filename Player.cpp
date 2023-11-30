@@ -9,8 +9,12 @@ void Player::UpdatePlayer(int screenHeight)
         float jump = 5.0f * multiplier;
 
         birdAcceleration = 0.0f;
-        birdVelocity = -(gravity * 5) * jump;
-        PlaySound(wingFlap);
+        birdVelocity = -(gravity * 3) * jump;
+
+        if(alive == true)
+        {
+            PlaySound(wingFlap);
+        }
     }
     //else continue with downward speed
     else
@@ -28,7 +32,7 @@ void Player::UpdatePlayer(int screenHeight)
 
     if(birdPosition >= 720)
     {
-        
+        alive = false;
         birdPosition = screenHeight;
     }
     else if (birdPosition <= 20)

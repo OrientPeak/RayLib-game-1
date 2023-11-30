@@ -31,6 +31,8 @@ class Player
 
         float gravity = 1.0f;
 
+        bool alive = true;
+
         //player functions
         void UpdatePlayer(int screenHeight);
         void DrawPlayer(const int screenWidth);

@@ -3,22 +3,41 @@
 void Timer::Print(float score)
 {
     DrawText(TextFormat("Score: %d", (int)score), 10, 10, 24, RED);
-    DrawText(TextFormat("Timer: %.1f", (float)time), 10, 40, 24, RED);
-    DrawText(TextFormat("%d", multiTime), 100, 200, 40, GREEN);
+    DrawText(TextFormat("Timer: %.1f", (float)time), 60, 10, 24, RED);
+    DrawText(TextFormat("PowerUp: %.1f", (float)pUpTime), 10, 50, 24, RED);
 }
 
 void Timer::Time()
 {
     frames++;
-    if(frames >= 10)
+    if(frames >= 6)
     {
         time -= 0.1f;
         frames = 0;
     }
+
+    pUpFrames++;
+    if(frames >= 6)
+    {
+        pUptime -= 0.1f;
+        frames = 0;
+    }
+
+    if(pUpTime <= 0)
+    {
+        powerUp = true;
+    }
     
     if(IsKeyPressed(KEY_SPACE))
     {
-
+        if(powerUp = true)
+        {
+            player->setMulti(2.0f);
+            powerUp == false;
+            pUpTime = 30.0f
+        }
+        else
+        {
         switch(multiTime)
         {
             case 0:
@@ -39,7 +58,9 @@ void Timer::Time()
             default:
                 player->setMulti(0.0f);
                 break;
-        }    
+        }  
+        }
+  
         time = 1.5f;
     }
     
