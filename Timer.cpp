@@ -1,11 +1,11 @@
 #include "Timer.h"
-
+//text for score and jump countdown
 void Timer::Print(float score)
 {
     DrawText(TextFormat("Score: %d", (int)score), 10, 30, 24, RED);
     DrawText(TextFormat("Timer: %.1f", (float)time), 10, 60, 24, RED);
 }
-
+//timer 
 void Timer::Time()
 {
     frames++;
@@ -14,7 +14,7 @@ void Timer::Time()
         time -= 0.1f;
         frames = 0;
     }
-    
+    //switch to control jump height 
     if(IsKeyPressed(KEY_SPACE))
     {
         switch(multiTime)

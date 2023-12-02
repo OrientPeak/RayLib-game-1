@@ -58,7 +58,7 @@ int main(void)
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
-
+            //check if player alive
             if(player.alive == true)
             {
                 //draw background
@@ -71,6 +71,7 @@ int main(void)
             }
             else
             {
+                //end screen text
                 DrawText(TextFormat("GAME OVER \nPress SPACE to EXIT"), screenWidth/3, 200, 60, RED);
                 DrawText(TextFormat("Final Score: %d", (int)score), screenWidth/3, 370, 40, RED);
                 SetExitKey(KEY_SPACE);
