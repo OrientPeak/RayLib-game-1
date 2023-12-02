@@ -42,7 +42,10 @@ int main(void)
         //updating the background
         background.UpdateBackgrnd();
 
-        float score = GetTime();
+        float score /*= GetTime()*/;
+
+        if(player.alive == true)
+            score = GetTime();
 
         timer.Time();
 
@@ -68,7 +71,8 @@ int main(void)
             }
             else
             {
-                DrawText(TextFormat("GAME OVER \nPress SPACE to EXIT"), screenWidth/3, screenHeight/2, 60, RED);
+                DrawText(TextFormat("GAME OVER \nPress SPACE to EXIT"), screenWidth/3, 200, 60, RED);
+                DrawText(TextFormat("Final Score: %d", (int)score), screenWidth/3, 370, 40, RED);
                 SetExitKey(KEY_SPACE);
                 
             }
